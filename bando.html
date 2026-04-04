@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bản Đồ - Hào Khí Sử Việt</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/bando.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="loader-content">
+        <div class="year-counter" id="year-counter">2879 TCN</div>
+        <div class="era-text" id="era-text">Kỷ nguyên Hùng Vương...</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="loader-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="navbar" class="scrolled">
+      <div class="logo">🇻🇳 HÀO KHÍ SỬ VIỆT</div>
+      <div class="nav-actions">
+        <div class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="trieudai.html">Các Triều Đại</a></li>
+        <li><a href="danhnhan.html">Danh Nhân</a></li>
+        <li><a href="bando.html" style="color: var(--gold)">Bản Đồ</a></li>
+        <li><a href="quiz.html" class="quiz-link glow-effect">Thử Thách</a></li>
+      </ul>
+    </nav>
+
+    <div
+      style="padding-top: 100px; padding-bottom: 50px; min-height: 80vh"
+      class="reveal"
+    >
+      <h2 class="section-title">Dấu Ấn Lịch Sử</h2>
+      <p
+        style="
+          text-align: center;
+          color: #ccc;
+          margin-bottom: 40px;
+          font-style: italic;
+        "
+      >
+        Khám phá các địa danh vang bóng một thời của dân tộc
+      </p>
+
+      <div class="filter-container reveal">
+        <button class="filter-btn active" onclick="filterMap('all')">Tất Cả</button>
+        <button class="filter-btn" onclick="filterMap('khang-chien')">Kháng Chiến</button>
+        <button class="filter-btn" onclick="filterMap('co-do')">Cố Đô</button>
+        <button class="filter-btn" onclick="filterMap('van-hoa')">Văn Hóa</button>
+      </div>
+
+      <div class="bando-layout">
+        <div class="map-wrapper glass-box glow-effect">
+          <div class="map-container" id="map-container">
+            <div id="map-tooltip" class="tooltip glass-box hidden"></div>
+          </div>
+        </div>
+
+        <div class="list-wrapper glass-box glow-effect">
+          <h3
+            style="
+              color: var(--gold);
+              text-align: center;
+              border-bottom: 1px solid #444;
+              padding-bottom: 15px;
+              margin-top: 0;
+              font-family: &quot;Playfair Display&quot;, serif;
+            "
+          >
+            Tiêu Điểm Lịch Sử
+          </h3>
+          <div id="location-list" class="location-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="location-modal" class="modal-overlay hidden">
+      <div class="modal-content loc-container">
+        <span class="close-modal" onclick="closeLocModal()">&times;</span>
+        <div class="loc-layout">
+          <div class="loc-image-wrapper">
+            <img id="loc-img" src="" alt="Location" />
+          </div>
+          <div class="loc-info">
+            <span id="loc-short" class="loc-badge"></span>
+            <h2 id="loc-name">Tên Địa Danh</h2>
+            <div id="loc-desc" class="loc-desc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-theme-toggle glow-effect" id="theme-toggle">
+      <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <h3>Đội thi Tin học trẻ</h3>
+        <p>Bản quyền © 2026. Lập trình bởi [Tên học sinh].</p>
+      </div>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script src="js/bando.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ - Hào Khí Sử Việt</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/home.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="loader-content">
+        <div class="year-counter" id="year-counter">2879 TCN</div>
+        <div class="era-text" id="era-text">Kỷ nguyên Hùng Vương...</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="loader-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="navbar">
+      <div class="logo">🇻🇳 HÀO KHÍ SỬ VIỆT</div>
+      <div class="nav-actions">
+        <div class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" style="color: var(--gold)">Trang Chủ</a></li>
+        <li><a href="trieudai.html">Các Triều Đại</a></li>
+        <li><a href="danhnhan.html">Danh Nhân</a></li>
+        <li><a href="bando.html">Bản Đồ</a></li>
+        <li><a href="quiz.html" class="quiz-link glow-effect">Thử Thách</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="dong-son-bg"></div>
+      <div class="hero-content">
+        <h1>HÀO KHÍ SỬ VIỆT</h1>
+        <p class="slogan"></p>
+        <button
+          class="cta-btn glow-effect"
+          onclick="window.location.href = 'trieudai.html'"
+        >
+          Khám Phá Ngay
+        </button>
+      </div>
+    </section>
+
+    <section class="features-intro reveal">
+      <div class="feature-card glass-box glow-effect" onclick="window.location.href='trieudai.html'">
+        <i class="fa-solid fa-scroll feature-icon"></i>
+        <h3>Các Triều Đại</h3>
+        <p>Hành trình ngược dòng thời gian qua 4000 năm lịch sử dựng nước và giữ nước.</p>
+      </div>
+      <div class="feature-card glass-box glow-effect" onclick="window.location.href='danhnhan.html'">
+        <i class="fa-solid fa-users-rays feature-icon"></i>
+        <h3>Danh Nhân Việt</h3>
+        <p>Tôn vinh những vị anh hùng, nhà văn hóa kiệt xuất đã làm rạng danh non sông.</p>
+      </div>
+      <div class="feature-card glass-box glow-effect" onclick="window.location.href='bando.html'">
+        <i class="fa-solid fa-map-location-dot feature-icon"></i>
+        <h3>Bản Đồ Di Tích</h3>
+        <p>Khám phá những địa danh vang bóng một thời trên khắp dải đất hình chữ S.</p>
+      </div>
+    </section>
+
+    <section class="daily-quote-section reveal">
+      <div class="quote-container glass-box">
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+        <p id="daily-quote-text">"Bệ hạ chém đầu tôi rồi hãy hàng."</p>
+        <h4 id="daily-quote-author">— Hưng Đạo Đại Vương Trần Hưng Đạo</h4>
+      </div>
+    </section>
+
+    <section class="stats-section reveal">
+      <div class="stat-box">
+        <i class="fa-solid fa-hourglass-half stat-icon"></i>
+        <div class="counter" data-target="4000">0</div>
+        <p>Năm Văn Hiến</p>
+      </div>
+      <div class="stat-box">
+        <i class="fa-solid fa-users stat-icon"></i>
+        <div class="counter" data-target="54">0</div>
+        <p>Dân Tộc Anh Em</p>
+      </div>
+      <div class="stat-box">
+        <i class="fa-solid fa-monument stat-icon"></i>
+        <div class="counter" data-target="1000">0</div>
+        <p>Di Tích Lịch Sử</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <h3>Đội thi Tin học trẻ - Hải Phòng</h3>
+        <p>Bản quyền © 2026. Lập trình bởi [Tên học sinh].</p>
+      </div>
+    </footer>
+
+    <div class="floating-theme-toggle glow-effect" id="theme-toggle">
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <script src="js/global.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>
