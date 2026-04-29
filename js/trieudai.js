@@ -4,9 +4,9 @@ const erasData = {
         name: "Dựng Nước & Bắc Thuộc",
         date: "2879 TCN - 938",
         images: [
-            "https://images.unsplash.com/photo-1600172454132-0545f1b53874?q=80", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Den_Hung.jpg/800px-Den_Hung.jpg", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Th%C3%A0nh_C%E1%BB%95_Loa.jpg/800px-Th%C3%A0nh_C%E1%BB%95_Loa.jpg" 
+            "assets/images/vanlang_aulac-1.webp", 
+            "assets/images/gd1.jpg", 
+            "assets/images/gd2.jpg" 
         ],
         desc: `
             <p>Đây là giai đoạn khởi thủy của dân tộc, định hình bản sắc văn hóa Việt và minh chứng cho sức sống mãnh liệt của một dân tộc không chịu khuất phục trước họa đồng hóa.</p>
@@ -30,8 +30,8 @@ const erasData = {
         name: "Kỷ Nguyên Tự Chủ",
         date: "939 - 1407",
         images: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Kinh_th%C3%A0nh_Th%C4%83ng_Long.jpg/800px-Kinh_th%C3%A0nh_Th%C4%83ng_Long.jpg", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Tran_Hung_Dao_statue_in_Nam_Dinh.jpg/800px-Tran_Hung_Dao_statue_in_Nam_Dinh.jpg" 
+            "assets/images/nhaly.jpg", 
+            "assets/images/nhatran.jpg" 
         ],
         desc: `
             <p>Giai đoạn này chứng kiến sự ra đời và củng cố sức mạnh của một quốc gia Đại Việt hoàn toàn độc lập, hùng cường, đánh bại mọi ý đồ xâm lược từ phương Bắc.</p>
@@ -57,8 +57,8 @@ const erasData = {
         name: "Hậu Lê & Trịnh Nguyễn Phân Tranh",
         date: "1428 - 1788",
         images: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Binh_ngo_dai_cao.jpg/800px-Binh_ngo_dai_cao.jpg", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Hoi_An_ancient_town.jpg/800px-Hoi_An_ancient_town.jpg" 
+            "assets/images/trinhnguyenphantranh.png", 
+            "assets/images/trinhnguyenphantranh2.jpg" 
         ],
         desc: `
             <p>Giai đoạn mang cả ánh hào quang chói lọi của sự phục hưng quốc gia lẫn bóng tối của sự chia cắt lãnh thổ và nội chiến kéo dài.</p>
@@ -80,8 +80,8 @@ const erasData = {
         name: "Tây Sơn & Nhà Nguyễn",
         date: "1788 - 1945",
         images: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Nguy%E1%BB%85n_Hu%E1%BB%87.jpg/400px-Nguy%E1%BB%87.jpg", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Hoang_thanh_Hue.jpg/800px-Hoang_thanh_Hue.jpg" 
+            "assets/images/bando.png", 
+            "assets/images/nhanguyen.jpg" 
         ],
         desc: `
             <p>Một thời kỳ bi tráng với những chiến công chống ngoại xâm vĩ đại nhất, nhưng cũng là lúc đất nước rơi vào vòng xoáy thực dân phương Tây.</p>
@@ -104,8 +104,8 @@ const erasData = {
         name: "Thời Đại Hồ Chí Minh",
         date: "1945 - Nay",
         images: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Ho_Chi_Minh_1946.jpg/600px-Ho_Chi_Minh_1946.jpg", 
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Independence_Palace_-_Saigon_-_Vietnam.jpg/800px-Independence_Palace_-_Saigon_-_Vietnam.jpg" 
+            "assets/images/dienbienphu.jpg", 
+            "assets/images/dinhdoclap.jpg" 
         ],
         desc: `
             <p>Kỷ nguyên vĩ đại nhất trong lịch sử dân tộc, chấm dứt hoàn toàn ách nô lệ, đưa nước ta trở thành một quốc gia độc lập, tự do.</p>
