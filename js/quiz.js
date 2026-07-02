@@ -1,5 +1,4 @@
-
-
+// NGÂN HÀNG CÂU HỎI TRẮC NGHIỆM LỊCH SỬ
 const questionBank = [
     { question: "Vị tướng nào lãnh đạo trận Bạch Đằng năm 938, chấm dứt 1000 năm bắc thuộc?", options: ["Ngô Quyền", "Lý Thường Kiệt", "Trần Hưng Đạo", "Quang Trung"], correctIndex: 0 },
     { question: "Bản tuyên ngôn độc lập đầu tiên 'Nam Quốc Sơn Hà' được gắn liền với vị tướng nào?", options: ["Trần Hưng Đạo", "Lý Thường Kiệt", "Lê Lợi", "Ngô Quyền"], correctIndex: 1 },
@@ -34,9 +33,13 @@ let score = 0;
 let highScore = parseInt(localStorage.getItem('historyHighScore')) || 0;
 let timer;
 let timeLeft;
-const TIME_LIMIT = 15;
+const TIME_LIMIT = 15; // Giới hạn 15 giây mỗi câu
 
+// Âm thanh tương tác
+const soundCorrect = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3");
+const soundWrong = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3");
 
+// HÀM TRỘN MẢNG (SỬ DỤNG ĐỂ TRỘN CÂU HỎI VÀ ĐÁP ÁN)
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -45,8 +48,9 @@ function shuffle(array) {
     return array;
 }
 
+// KHỞI TẠO TRÒ CHƠI
 function initGame() {
-    
+    // Trộn ngân hàng câu hỏi và lấy 15 câu cho mỗi lượt chơi
     questions = shuffle([...questionBank]).slice(0, 15);
     currentQuestionIndex = 0;
     score = 0;
@@ -55,6 +59,7 @@ function initGame() {
     loadQuestion();
 }
 
+// QUẢN LÝ BỘ ĐẾM THỜI GIAN
 function startTimer() {
     timeLeft = TIME_LIMIT;
     const timerBar = document.getElementById('timer-bar');
@@ -66,6 +71,7 @@ function startTimer() {
         const percentage = (timeLeft / TIME_LIMIT) * 100;
         timerBar.style.width = percentage + '%';
         
+        // Cảnh báo khi sắp hết giờ (dưới 30%)
         if (percentage < 30) {
             timerBar.style.backgroundColor = '#f44336';
             timerBar.classList.add('timer-shake'); 
@@ -80,17 +86,19 @@ function startTimer() {
     }, 50);
 }
 
+// XỬ LÝ KHI HẾT GIỜ MÀ CHƯA CHỌN ĐÁP ÁN
 function handleTimeOut() {
     const allBtns = document.getElementById("options-container").children;
     const correctIndex = questions[currentQuestionIndex].correctIndex;
     
-    
+    // Hiển thị đáp án đúng để người chơi biết
     allBtns[correctIndex].classList.add("correct-flash");
     for (let btn of allBtns) btn.disabled = true;
 
     setTimeout(nextQuestion, 1500);
 }
 
+// HIỂN THỊ NỘI DUNG CÂU HỎI MỚI
 function loadQuestion() {
     clearInterval(timer);
     if (currentQuestionIndex >= questions.length) {
@@ -104,7 +112,7 @@ function loadQuestion() {
     const optionsContainer = document.getElementById("options-container");
     optionsContainer.innerHTML = "";
 
-    
+    // Trộn thứ tự các đáp án để tăng độ khó
     const originalOptions = q.options.map((text, idx) => ({ text, isCorrect: idx === q.correctIndex }));
     const shuffledOptions = shuffle([...originalOptions]);
 
@@ -119,23 +127,28 @@ function loadQuestion() {
     startTimer();
 }
 
+// KIỂM TRA ĐÁP ÁN NGƯỜI CHƠI CHỌN
 function checkAnswer(isCorrect, selectedBtn) {
     clearInterval(timer);
     const optionsContainer = document.getElementById("options-container");
     const allBtns = optionsContainer.children;
     
+    // Vô hiệu hóa tất cả nút sau khi đã chọn
     for (let btn of allBtns) btn.disabled = true;
 
     if (isCorrect) {
+        soundCorrect.currentTime = 0;
+        soundCorrect.play().catch(e => console.log(e));
         selectedBtn.classList.add("correct");
         score += 10;
         document.getElementById("score").innerText = score;
         
     } else {
+        soundWrong.currentTime = 0;
+        soundWrong.play().catch(e => console.log(e));
         selectedBtn.classList.add("wrong");
-        
+        // Hiển thị đáp án đúng bên cạnh đáp án sai đã chọn
         for (let btn of allBtns) {
-            
             const q = questions[currentQuestionIndex];
             if (btn.innerText === q.options[q.correctIndex]) {
                 btn.classList.add("correct");
@@ -146,11 +159,13 @@ function checkAnswer(isCorrect, selectedBtn) {
     setTimeout(nextQuestion, 1200);
 }
 
+// CHUYỂN SANG CÂU TIẾP THEO
 function nextQuestion() {
     currentQuestionIndex++;
     loadQuestion();
 }
 
+// HIỂN THỊ KẾT QUẢ CUỐI CÙNG
 function showResult() {
     document.getElementById("quiz-body").classList.add("hidden");
     const resultScreen = document.getElementById("result-screen");
@@ -159,12 +174,10 @@ function showResult() {
     document.getElementById("final-score").innerText = score;
     document.getElementById("max-score").innerText = questions.length * 10;
 
+    // Đưa ra nhận xét dựa trên số điểm đạt được
     let feedbackText = "";
-    let feedbackColor = "white";
-
     if (score === questions.length * 10) {
         feedbackText = "🔥 Tuyệt đỉnh! Bạn là một nhà sử học thực thụ!";
-        feedbackColor = "#gold";
     } else if (score >= (questions.length * 10) * 0.8) {
         feedbackText = "🌟 Rất tốt! Kiến thức lịch sử của bạn rất đáng nể.";
     } else if (score >= (questions.length * 10) * 0.5) {
@@ -173,7 +186,6 @@ function showResult() {
         feedbackText = "📚 Đừng nản chí, hãy đọc thêm 'Hào Khí Sử Việt' để nâng cao kiến thức!";
     }
 
-    
     const oldFeedback = document.getElementById("quiz-feedback");
     if (oldFeedback) oldFeedback.remove();
 
@@ -183,6 +195,7 @@ function showResult() {
     feedback.style.margin = "15px 0";
     feedback.style.fontWeight = "bold";
     
+    // Xử lý khi phá kỷ lục cá nhân
     if (score > highScore) {
         highScore = score;
         localStorage.setItem('historyHighScore', highScore);
@@ -198,13 +211,14 @@ function showResult() {
     resultScreen.insertBefore(feedback, resultScreen.querySelector('.restart-btn'));
 }
 
+// CHƠI LẠI TỪ ĐẦU
 function restartQuiz() {
     document.getElementById("quiz-body").classList.remove("hidden");
     document.getElementById("result-screen").classList.add("hidden");
     initGame();
 }
 
-
+// Chờ 3 giây (để preloader biến mất) rồi mới bắt đầu quiz
 window.addEventListener('load', () => {
     setTimeout(initGame, 3000);
 });

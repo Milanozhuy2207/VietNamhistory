@@ -1,3 +1,4 @@
+// DỮ LIỆU CÁC ĐỊA DANH LỊCH SỬ TRÊN BẢN ĐỒ
 const mapLocations = [
     {
         id: "pac-bo", top: 5, left: 58, category: "khang-chien",
@@ -75,25 +76,30 @@ const mapLocations = [
 
 let currentFilter = 'all';
 
+// HÀM HIỂN THỊ CÁC ĐIỂM NÓNG (HOTSPOTS) TRÊN BẢN ĐỒ
 function renderMap() {
     const mapContainer = document.getElementById("map-container");
     const tooltip = document.getElementById("map-tooltip");
     const locationList = document.getElementById("location-list");
 
+    // Xóa các điểm cũ và danh sách cũ
     const oldHotspots = mapContainer.querySelectorAll(".hotspot");
     oldHotspots.forEach(h => h.remove());
     locationList.innerHTML = "";
 
+    // Lọc dữ liệu theo danh mục hiện tại
     const filteredData = currentFilter === 'all' 
         ? mapLocations 
         : mapLocations.filter(loc => loc.category === currentFilter);
 
     filteredData.forEach(loc => {
+        // 1. Tạo điểm chấm trên bản đồ
         const dot = document.createElement("div");
         dot.className = "hotspot reveal-animation";
         dot.style.top = loc.top + "%";
         dot.style.left = loc.left + "%";
 
+        // Hiển thị tooltip khi di chuột qua điểm chấm
         dot.addEventListener("mouseenter", () => {
             tooltip.innerHTML = `<h4>${loc.name}</h4><p>${loc.short}</p>`;
             tooltip.classList.remove("hidden");
@@ -105,6 +111,7 @@ function renderMap() {
 
         mapContainer.appendChild(dot);
 
+        // 2. Tạo mục hiển thị trong danh sách bên dưới bản đồ
         const listItem = document.createElement("div");
         listItem.className = "loc-item reveal-animation";
         listItem.innerHTML = `
@@ -120,11 +127,13 @@ function renderMap() {
     });
 }
 
+// HÀM LỌC ĐỊA DANH THEO DANH MỤC (Kháng chiến, Cố đô, Văn hóa)
 function filterMap(category) {
     currentFilter = category;
     const btns = document.querySelectorAll('.filter-btn');
     btns.forEach(btn => {
         btn.classList.remove('active');
+        // Kích hoạt màu nút tương ứng
         if(btn.getAttribute('onclick').includes(`'${category}'`)) {
             btn.classList.add('active');
         }
@@ -132,6 +141,7 @@ function filterMap(category) {
     renderMap();
 }
 
+// HÀM MỞ MODAL THÔNG TIN ĐỊA DANH
 function openLocModal(id) {
     const data = mapLocations.find(item => item.id === id);
     if (!data) return;
@@ -144,10 +154,12 @@ function openLocModal(id) {
     document.getElementById("location-modal").classList.remove("hidden");
 }
 
+// HÀM ĐÓNG MODAL
 function closeLocModal() {
     document.getElementById("location-modal").classList.add("hidden");
 }
 
+// Đóng modal khi click ra ngoài
 window.onclick = function (event) {
     const modal = document.getElementById("location-modal");
     if (event.target === modal) {
@@ -155,6 +167,7 @@ window.onclick = function (event) {
     }
 }
 
+// Khởi chạy render bản đồ sau khi trang tải xong
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(renderMap, 500);
 });

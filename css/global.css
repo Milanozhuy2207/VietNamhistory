@@ -1,15 +1,17 @@
 :root {
-  --gold: #daa520;
-  --dark-red: #4a0404;
-  --bg-dark: #1a1a1a;
-  --text-color: #f5f5f5;
-  --glass: rgba(20, 20, 20, 0.6);
+  --gold: #d4af37;
+  --dark-red: #3b0000;
+  --bg-dark: #0f0f0f;
+  --text-color: #e6e6e6;
+  --glass: rgba(15, 15, 15, 0.4);
+  --glass-border: rgba(212, 175, 55, 0.2);
 }
 .light-theme {
-  --bg-dark: #f0ebd8;
-  --text-color: #222;
-  --dark-red: #8b0000;
-  --glass: rgba(255, 255, 255, 0.7);
+  --bg-dark: #f8f5f0;
+  --text-color: #2c2c2c;
+  --dark-red: #7c0a0a;
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(212, 175, 55, 0.4);
 }
 html {
   scroll-behavior: smooth;
@@ -42,19 +44,22 @@ h3 {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px 50px;
+  padding: 25px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: transparent;
-  transition: 0.4s ease;
+  transition: padding 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   z-index: 1000;
   box-sizing: border-box;
 }
 #navbar.scrolled {
-  background-color: rgba(74, 4, 4, 0.98);
-  padding: 10px 50px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 15px 50px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 #navbar .logo {
   font-size: 24px;
@@ -129,11 +134,11 @@ h3 {
 
 .glass-box {
   background: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(218, 165, 32, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
+  border-radius: 20px;
 }
 .glow-effect {
   transition: 0.4s ease;
@@ -220,10 +225,8 @@ footer {
   color: #888;
 }
 
-.floating-theme-toggle {
+.floating-theme-toggle, .floating-music-toggle {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
   width: 55px;
   height: 55px;
   background-color: var(--dark-red);
@@ -240,19 +243,41 @@ footer {
   transition: all 0.3s ease;
 }
 
-.floating-theme-toggle:hover {
-  transform: translateY(-5px) rotate(15deg);
+.floating-theme-toggle {
+  bottom: 30px;
+  right: 30px;
+}
+
+.floating-music-toggle {
+  bottom: 30px;
+  right: 100px;
+}
+
+.floating-theme-toggle:hover, .floating-music-toggle:hover {
+  transform: translateY(-5px) scale(1.1);
   background-color: var(--gold);
   color: var(--bg-dark);
 }
 
-.light-theme .floating-theme-toggle {
+.floating-music-toggle.playing {
+  animation: pulseMusic 2s infinite ease-in-out;
+  background-color: var(--gold);
+  color: var(--bg-dark);
+}
+
+@keyframes pulseMusic {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.light-theme .floating-theme-toggle, .light-theme .floating-music-toggle {
   background-color: #fff;
   color: #d4af37;
   border-color: #d4af37;
 }
 
-.light-theme .floating-theme-toggle:hover {
+.light-theme .floating-theme-toggle:hover, .light-theme .floating-music-toggle:hover {
   background-color: #d4af37;
   color: #fff;
 }

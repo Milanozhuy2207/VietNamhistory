@@ -1,0 +1,21 @@
+{
+  "name": "Hào Khí Sử Việt",
+  "short_name": "Sử Việt",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#4a0404",
+  "description": "Ứng dụng học lịch sử Việt Nam tương tác.",
+  "icons": [
+    {
+      "src": "assets/images/trongdong.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/images/trongdong.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

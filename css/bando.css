@@ -74,7 +74,7 @@
   width: 100%;
   aspect-ratio: 1 / 1.8;
   background-image: url("../assets/images/bando.webp");
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10px;

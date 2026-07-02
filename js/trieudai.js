@@ -1,4 +1,5 @@
 
+// DỮ LIỆU CÁC THỜI KỲ LỊCH SỬ
 const erasData = {
     "era-1": {
         name: "Dựng Nước & Bắc Thuộc",
@@ -125,12 +126,12 @@ const erasData = {
     }
 };
 
-
+// HÀM HIỂN THỊ CHI TIẾT THỜI KỲ KHI CLICK VÀO TIMELINE
 function showEraDetails(eraId) {
     const data = erasData[eraId];
     if (!data) return;
 
-    
+    // Hiển thị bộ sưu tập ảnh của thời kỳ đó
     const gallery = document.getElementById("detail-image-gallery");
     gallery.innerHTML = ""; 
 
@@ -141,23 +142,23 @@ function showEraDetails(eraId) {
         gallery.appendChild(imgElement); 
     });
 
-    
+    // Cập nhật tên, thời gian và nội dung mô tả
     document.getElementById("detail-name").innerText = data.name;
     document.getElementById("detail-date").innerText = data.date;
     document.getElementById("detail-desc").innerHTML = data.desc;
 
-    
+    // Hiện phần chi tiết và cuộn mượt xuống đó
     const detailSection = document.getElementById("era-detail-section");
     detailSection.style.display = "block";
 
     setTimeout(() => {
-        const yOffset = -120;
+        const yOffset = -120; // Trừ đi chiều cao navbar để không bị che
         const y = detailSection.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
     }, 100);
 }
 
-
+// HÀM CUỘN XUỐNG PHẦN TIMELINE
 function scrollToTimeline() {
     const timeline = document.querySelector('.v-timeline');
     if (!timeline) return;
@@ -167,7 +168,7 @@ function scrollToTimeline() {
     window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
-
+// XỬ LÝ THANH TIẾN TRÌNH DỌC (PROGRESS LINE) CỦA TIMELINE KHI CUỘN CHUỘT
 window.addEventListener('scroll', () => {
     const timeline = document.querySelector('.v-timeline');
     const progressLine = document.getElementById('timeline-progress');
@@ -177,17 +178,18 @@ window.addEventListener('scroll', () => {
     const timelineRect = timeline.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     
-    
+    // Tính toán tỷ lệ phần trăm đã cuộn qua timeline
     let progress = (windowHeight / 2 - timelineRect.top) / timelineRect.height;
     
-    
+    // Giới hạn trong khoảng 0 đến 1
     if (progress < 0) progress = 0;
     if (progress > 1) progress = 1;
     
+    // Cập nhật chiều cao cho thanh tiến trình
     progressLine.style.height = (progress * 100) + "%";
 });
 
-
+// Kích hoạt scroll một lần khi load trang để cập nhật trạng thái ban đầu
 document.addEventListener("DOMContentLoaded", () => {
     window.dispatchEvent(new Event('scroll'));
 });

@@ -1,6 +1,6 @@
 
+// DỮ LIỆU CÁC NHÂN VẬT LỊCH SỬ
 const figuresData = [
-    
     {
         id: "dinh-bo-linh", name: "Đinh Tiên Hoàng", role: "vua",
         image: "assets/images/DinhTienHoang.jpg",
@@ -93,7 +93,7 @@ const figuresData = [
     },
     {
         id: "chu-van-an", name: "Chu Văn An", role: "van",
-        image: "assets/images/NgoQuyen.jpg",
+        image: "assets/images/ChuVanAn.jpg",
         quote: "Ta chưa từng nghe nước nào bề tôi nịnh hót, lấn lướt quyền vua mà có thể giữ được nước.",
         desc: `<p>Người thầy của muôn đời (Vạn thế sư biểu). Khí tiết thanh cao, từng dâng "Thất trảm sớ" xin chém 7 tên nịnh thần.</p>`
     },
@@ -123,10 +123,10 @@ const figuresData = [
     }
 ];
 
-
+// HÀM HIỂN THỊ DANH SÁCH NHÂN VẬT LÊN GIAO DIỆN
 function renderRoster(data) {
     const grid = document.getElementById("roster-grid");
-    grid.innerHTML = "";
+    grid.innerHTML = ""; // Xóa nội dung cũ trước khi render mới
 
     if (data.length === 0) {
         grid.innerHTML = "<p style='color: #888; grid-column: 1 / -1; text-align: center; font-size: 18px;'>Không tìm thấy nhân vật nào.</p>";
@@ -136,7 +136,8 @@ function renderRoster(data) {
     data.forEach((figure, index) => {
         const card = document.createElement("div");
         card.className = "roster-card";
-        
+
+        // Tạo hiệu ứng xuất hiện trễ dần cho từng card
         card.style.animationDelay = `${index * 0.05}s`;
         card.onclick = () => openModal(figure.id);
         card.innerHTML = `
@@ -147,6 +148,7 @@ function renderRoster(data) {
     });
 }
 
+// HÀM LỌC NHÂN VẬT THEO TÊN VÀ VAI TRÒ
 function filterFigures() {
     const searchKeyword = document.getElementById("search-box").value.toLowerCase();
     const selectedRole = document.getElementById("role-filter").value;
@@ -159,15 +161,18 @@ function filterFigures() {
     renderRoster(filteredData);
 }
 
+// HÀM MỞ MODAL CHI TIẾT NHÂN VẬT
 function openModal(id) {
     const figure = figuresData.find(item => item.id === id);
     if (!figure) return;
 
+    // Xác định tên vai trò và màu sắc hiển thị
     let roleText = ""; let roleColor = "";
     if (figure.role === "vua") { roleText = "Hoàng Đế / Lãnh Tụ"; roleColor = "#DAA520"; }
     else if (figure.role === "tuong") { roleText = "Danh Tướng"; roleColor = "#8b0000"; }
     else { roleText = "Danh Nhân Văn Hóa"; roleColor = "#2E8B57"; }
 
+    // Đổ dữ liệu vào modal
     document.getElementById("modal-img").src = figure.image;
     document.getElementById("modal-name").innerText = figure.name;
 
@@ -178,21 +183,24 @@ function openModal(id) {
     document.getElementById("modal-quote").innerText = figure.quote;
     document.getElementById("modal-desc").innerHTML = figure.desc;
 
+    // Hiển thị modal với hiệu ứng
     const modal = document.getElementById("info-modal");
-    modal.style.display = "flex"; 
+    modal.style.display = "flex";
     setTimeout(() => {
-        modal.classList.remove("hidden"); 
+        modal.classList.remove("hidden");
     }, 10);
 }
 
+// HÀM ĐÓNG MODAL
 function closeModal() {
     const modal = document.getElementById("info-modal");
     modal.classList.add("hidden");
     setTimeout(() => {
-        modal.style.display = "none"; 
+        modal.style.display = "none";
     }, 300);
 }
 
+// Đóng modal khi click ra ngoài vùng nội dung (vào phần overlay)
 window.onclick = function (event) {
     const modal = document.getElementById("info-modal");
     if (event.target === modal) {
@@ -200,8 +208,10 @@ window.onclick = function (event) {
     }
 }
 
+// Khởi tạo danh sách lần đầu
 renderRoster(figuresData);
 
+// XỬ LÝ HIỆU ỨNG SLIDESHOW (Nếu có)
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 if (slides.length > 0) {
