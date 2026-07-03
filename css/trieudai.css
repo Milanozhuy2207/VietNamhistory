@@ -105,7 +105,7 @@
 .v-timeline-content p {
   margin: 0;
   font-size: 15px;
-  color: #ccc;
+  color: var(--text-color);
 }
 
 
@@ -175,7 +175,7 @@
   border-left: 5px solid var(--gold);
   margin: 25px 0;
   font-weight: bold;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .back-btn {

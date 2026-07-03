@@ -80,7 +80,7 @@
 }
 
 .feature-card p {
-  color: #ccc;
+  color: var(--text-color);
   line-height: 1.6;
 }
 
@@ -187,7 +187,7 @@
   font-style: italic;
   line-height: 1.5;
   margin-bottom: 25px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 #daily-quote-author {

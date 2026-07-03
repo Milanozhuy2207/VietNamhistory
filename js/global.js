@@ -1,11 +1,10 @@
 
 // XỬ LÝ CHẾ ĐỘ SÁNG/TỐI (THEME TOGGLE)
 const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
 
 // Kiểm tra và áp dụng theme đã lưu trong localStorage
 if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light-theme');
+    document.documentElement.classList.add('light-theme');
     // Thay đổi icon từ mặt trăng sang mặt trời nếu là theme sáng
     if (themeToggle) themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
 }
@@ -13,8 +12,8 @@ if (localStorage.getItem('theme') === 'light') {
 // Lắng nghe sự kiện click vào nút chuyển đổi theme
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-theme');
-        const isLight = body.classList.contains('light-theme');
+        document.documentElement.classList.toggle('light-theme');
+        const isLight = document.documentElement.classList.contains('light-theme');
         // Lưu lựa chọn theme vào localStorage
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
         
